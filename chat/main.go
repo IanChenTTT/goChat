@@ -52,5 +52,6 @@ func main() {
   serer := NewServer()
   http.Handle("/ws", websocket.Handler(serer.handleWS))
   http.ListenAndServe(":3000", nil)
+  }
 
-}
+
