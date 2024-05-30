@@ -53,6 +53,7 @@ func newChatServer() *chatServer{
     return cs
 }
 // Serve each end point
+// Default hadler funtion
 func (cs *chatServer)ServeHTTP(w http.ResponseWriter, r *http.Request ){
     cs.serverMux.ServeHTTP(w,r)
 }
