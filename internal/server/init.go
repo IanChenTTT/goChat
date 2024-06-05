@@ -9,14 +9,16 @@ import (
 	"os/signal"
 	"time"
 )
-
-// server initialization and run
 func Main() {
 	err := run()
 	if err != nil {
 		fmt.Println(err)
 	}
 }
+// Run executable file from command line  
+// [out][port] 
+// start statis file server
+// start websocket server
 func run() error {
 	if len(os.Args) < 2 {
 		return errors.New("please provide valid argmunent,[.out,:port]")
@@ -53,5 +55,10 @@ func run() error {
 		fmt.Printf("unexpected event happend %v \n", e)
 	}
 
+    // To handle grace full shut down server,
+    // using context time out make sure context is in cancel state
+    // refuse all other request . then after time out server shut down
+    // discussion 
+    // https://www.reddit.com/r/golang/comments/16l1mhw/looking_for_clarifications_on_how_graceful/
 	return nil
 }
