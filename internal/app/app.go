@@ -9,6 +9,6 @@ import (
 // Log // use exe or out in directory with Log folder in it
 // Server
 func Run() {
-	//server.Log()
-    server.Main()
+	server.Log()
+	server.Main()
 }

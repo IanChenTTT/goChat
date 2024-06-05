@@ -24,16 +24,16 @@ func Log() {
 			contain = true
 		}
 	}
-	if contain == false {
+	if !contain {
 		l.Warn("log directory can't find")
 		os.Exit(1)
 	}
-    fmt.Println("Executable path:",exPath)
+	fmt.Println("Executable path:", exPath)
 
 	fs, err := os.OpenFile("log/access.log", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
 	Check(err, l)
 
-    l.Debug("Admim", slog.String("action","Create Log file"))
+	l.Info("Admim", slog.String("action", "Create Log file"))
 	defer func(fs *os.File) {
 		err := fs.Close()
 		Check(err, l)

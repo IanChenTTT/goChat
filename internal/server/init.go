@@ -1,7 +1,7 @@
 package server
 
 import (
-	"errors"
+	"context"
 	"fmt"
 	"net"
 	"net/http"
@@ -9,21 +9,27 @@ import (
 	"os/signal"
 	"time"
 )
+
 func Main() {
 	err := run()
 	if err != nil {
 		fmt.Println(err)
 	}
 }
-// Run executable file from command line  
-// [out][port] 
+
+// Run executable file from command line
+// [out][port]
 // start statis file server
 // start websocket server
 func run() error {
-	if len(os.Args) < 2 {
-		return errors.New("please provide valid argmunent,[.out,:port]")
+	fmt.Printf("Enter your port: ")
+	var port string
+	_, err := fmt.Scanln(&port)
+	if err != nil {
+		fmt.Println(err)
+		os.Exit(1)
 	}
-	l, err := net.Listen("tcp", os.Args[1])
+	l, err := net.Listen("tcp", port)
 	if err != nil {
 		fmt.Println(err)
 		os.Exit(1)
@@ -55,10 +61,12 @@ func run() error {
 		fmt.Printf("unexpected event happend %v \n", e)
 	}
 
-    // To handle grace full shut down server,
-    // using context time out make sure context is in cancel state
-    // refuse all other request . then after time out server shut down
-    // discussion 
-    // https://www.reddit.com/r/golang/comments/16l1mhw/looking_for_clarifications_on_how_graceful/
-	return nil
+	// To handle grace full shut down server,
+	// using context time out make sure context is in cancel state
+	// refuse all other request . then after time out server shut down
+	// discussion
+	// https://www.reddit.com/r/golang/comments/16l1mhw/looking_for_clarifications_on_how_graceful/
+	ctx, cancel := context.WithTimeout(context.Background(), time.Second*10)
+	defer cancel()
+	return s.Shutdown(ctx)
 }
