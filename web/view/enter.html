@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>入口</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <style>
+        body{
+            background-color: gray;
+        }
+        .text{
+            text-align: center;
+            font-size: 20px;
+        }
+        .fc2 {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+            color: white;
+        }
+        .and2 {
+            font-size: 40px;
+        }
+        .QRcode {
+            border: 1px solid white;
+            border-radius: 4px;
+            cursor: pointer;
+            text-align: center;
+            width: 200px;
+            height: 200px;
+            margin-bottom: 10px;
+            font-size: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .input {
+            border: 1px solid white;
+            border-radius: 4px;
+            cursor: pointer;
+            text-align: center;
+            width: 35vw;
+            height: 50px;
+            margin-bottom: 10px;
+            font-size: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+        .input::before {
+            position: absolute;
+            color: white;
+        }
+    </style>
+    <script>
+        $(document).ready(function(){
+            $('.input').mouseover(function(){
+                $(this).css({
+                    'background-color': 'white',
+                    'color': 'gray'
+                });
+            });
+            $('.input').mouseout(function(){
+                $(this).css({
+                    'background-color': 'gray',
+                    'color': 'white'
+                });
+            });
+        });
+    </script>
+
+</head>
+<body>
+ <div class="fc2">
+    <div class="QRcode"></div>
+    <div class="and2">&</div>
+    <div class="text">請輸入代碼</div>
+    <div class="input" contenteditable="true"></div>
+ </div>
+</body>
+</html>

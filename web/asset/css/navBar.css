@@ -1,0 +1,70 @@
+.button {
+  border: 0;
+  cursor: pointer;
+  background: var(--gray-8);
+  color: var(--gray-2);
+  font-weight: 700;
+  padding: .5rem 1.25rem;
+  border-radius: 0.3rem;
+}
+
+.button:hover,
+.button:focus {
+  background: var(--cyan-9);
+}
+
+.floating-menu {
+  font-family: sans-serif;
+  background: linear-gradient(180.3deg, rgb(221, 221, 221) 5.5%, rgb(110, 136, 161) 90.2%);
+  padding: 5px;
+  ;
+  width: 100px;
+  z-index: 100;
+  border-radius: 50%;
+  position: fixed;
+  top: 0px;
+  right: 0px;
+  translate: 50px -30px;
+
+  /*Make button for open dont have any style*/
+  button,
+  input[type="submit"],
+  input[type="reset"] {
+    background: none;
+    color: inherit;
+    border: none;
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
+    outline: inherit;
+  }
+
+  img {
+    width: 85%;
+    height: 85%;
+    opacity: 0.4;
+  }
+}
+#nav-Modal {
+  background-color: var(--stone-9) ;
+  padding: 0;
+  border: 0;
+  border-radius: 0.6rem;
+  box-shadow: 0 0 1em black;
+  .list {
+    color: black;
+    font-size: 20px;
+    padding: 20px;
+    height: 30vh;
+    width: 8.15rem;
+    border-radius: 10px;
+    text-align: left;
+  }
+
+  .list div {
+    margin-bottom: 30px;
+  }
+}
+#nav-Modal ::backdrop{
+  background-color: rgba(0, 0, 0, 0.4);
+}

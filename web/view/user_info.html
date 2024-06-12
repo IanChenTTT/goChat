@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>使用者資訊</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <style>
+        body {
+            background-color: gray;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .info {
+            background-color: white;
+            color: black;
+            font-size: 20px;
+            padding: 20px;
+            height: 40vh;
+            width: 30vw;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+        }
+        .header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .profile-pic {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: lightgray;
+            overflow: hidden;
+            margin-right: 10px;
+        }
+        .profile-pic img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            background-color: lightblue;
+        }
+        .user-id {
+            font-size: 18px;
+        }
+        .input-area {
+            display: flex;
+            align-items: center;
+            margin-top: 10px;
+        }
+        .input {
+            flex-grow: 1;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+        .button {
+            padding: 10px 20px;
+            background-color: gray;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+    <script>
+        $(document).ready(function(){
+            
+        });
+    </script>
+</head>
+<body>
+    <div class="info">
+        <div class="header">
+            <div class="profile-pic">
+                <img src="">
+            </div>
+            <div class="user-id">User ID</div>
+        </div>
+        <div class="input-area">
+            <div class="input" contenteditable="true"></div>
+            <button class="button">搜尋</button>
+        </div>
+    </div>
+</body>
+</html>
