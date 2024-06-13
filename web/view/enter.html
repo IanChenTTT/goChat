@@ -1,30 +1,42 @@
+{{block "enter" .}}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>入口</title>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <!-- 禹安增/修 -->
+
+    <link rel="stylesheet" href="/assets/css/bg.css">
+
+    <link rel="stylesheet" href="/assets/css/color.css" />
+    <link rel="stylesheet" href="/assets/css/navBar.css" />
+    <script src="/assets/js/host_room.js"></script>
+    <!--陳衍易 -->
     <style>
-        body{
-            background-color: gray;
-        }
-        .text{
+        .text {
             text-align: center;
             font-size: 20px;
         }
+
         .fc2 {
             display: flex;
-            justify-content: center;
             align-items: center;
             flex-direction: column;
             height: 100vh;
-            color: white;
+            color: #aaa;
+
+            /* 禹安增/修 */
+            justify-content: space-evenly;
         }
+
         .and2 {
             font-size: 40px;
         }
+
         .QRcode {
             border: 1px solid white;
             border-radius: 4px;
@@ -38,7 +50,9 @@
             justify-content: center;
             align-items: center;
         }
+
         .input {
+            margin-top: 10vh;
             border: 1px solid white;
             border-radius: 4px;
             cursor: pointer;
@@ -51,36 +65,88 @@
             justify-content: center;
             align-items: center;
             position: relative;
+
+            /* 禹安增/修 */
+            line-height: 50px;
         }
-        .input::before {
-            position: absolute;
-            color: white;
+
+        /* 禹安增/修 */
+        .input:focus {
+            background-color: rgba(0, 1, 0, 0.1);
+            outline: none;
+            /* 移除 focus 時的 outline */
         }
     </style>
+
     <script>
-        $(document).ready(function(){
-            $('.input').mouseover(function(){
+        $(document).ready(function () {
+            $('.input').mouseover(function () {
                 $(this).css({
-                    'background-color': 'white',
-                    'color': 'gray'
+                    'background-color': 'rgba(0,1,0,0.1)',
+                    'color': 'white',
                 });
             });
-            $('.input').mouseout(function(){
+            $('.input').mouseout(function () {
                 $(this).css({
-                    'background-color': 'gray',
-                    'color': 'white'
+                    'background-color': 'rgba(0,1,0,0.1)',
+                    'color': '#aaa'
                 });
             });
         });
+
     </script>
 
+
 </head>
+
 <body>
- <div class="fc2">
-    <div class="QRcode"></div>
-    <div class="and2">&</div>
-    <div class="text">請輸入代碼</div>
-    <div class="input" contenteditable="true"></div>
- </div>
+
+    <header>
+      <nav class="floating-menu">
+        <button class="open-btn">
+          <img src="/assets/img/setting.svg" alt="" srcset="" />
+        </button>
+      </nav>
+      <!-- POP UP NAV_MENU-->
+      <dialog class="nav-Modal" id="nav-Modal">
+        <div class="list">
+          <button type="button" class="button"><a href="/chat/index">Home</a></button>
+          <button type="button" class="button"><a href="/chat/enter">Join</a></button>
+        </div>
+        <button class="button close-btn">關閉</button>
+      </dialog>
+    </header>
+    <div class="fc2">
+        <div class="QRcode"></div>
+        <!-- <div class="and2"></div> -->
+        <!-- <div class="text">請輸入代碼</div> -->
+
+        <!-- 禹安增/修 -->
+        <div class="input" id="placeholder" contenteditable="true">請輸入代碼</div>
+    </div>
+    <div id="circle_z2"></div>
+    <div id="circle_z1"></div>
+    <div id="circle_z0"></div>
 </body>
+
+<!-- 禹安增/修 -->
+<script>
+    const editableDiv = document.getElementById('placeholder');
+
+    editableDiv.addEventListener('focus', () => {
+        if (editableDiv.textContent === "請輸入代碼") {
+            editableDiv.textContent = '';
+            editableDiv.style.color = '#000';
+        }
+    });
+
+    editableDiv.addEventListener('blur', () => {
+        if (editableDiv.textContent === '') {
+            editableDiv.textContent = '請輸入代碼';
+            editableDiv.style.color = '#aaa';
+        }
+    });
+</script>
+
 </html>
+{{ end }}

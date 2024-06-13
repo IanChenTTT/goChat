@@ -4,7 +4,7 @@
   background: var(--gray-8);
   color: var(--gray-2);
   font-weight: 700;
-  padding: .5rem 1.25rem;
+  padding: 0.5rem 1.25rem;
   border-radius: 0.3rem;
 }
 
@@ -15,9 +15,10 @@
 
 .floating-menu {
   font-family: sans-serif;
-  background: linear-gradient(180.3deg, rgb(221, 221, 221) 5.5%, rgb(110, 136, 161) 90.2%);
+  /* background: linear-gradient(180.3deg, rgb(221, 221, 221) 5.5%, rgb(110, 136, 161) 90.2%);*/
+
+  background: rgba(255, 250, 205, 0.3);
   padding: 5px;
-  ;
   width: 100px;
   z-index: 100;
   border-radius: 50%;
@@ -46,7 +47,7 @@
   }
 }
 #nav-Modal {
-  background-color: var(--stone-9) ;
+  background-color: var(--stone-9);
   padding: 0;
   border: 0;
   border-radius: 0.6rem;
@@ -61,10 +62,17 @@
     text-align: left;
   }
 
-  .list div {
+  .list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px 10px;
     margin-bottom: 30px;
   }
+  .list a{
+    color: black;
+    text-decoration: none;
+  }
 }
-#nav-Modal ::backdrop{
+#nav-Modal ::backdrop {
   background-color: rgba(0, 0, 0, 0.4);
 }

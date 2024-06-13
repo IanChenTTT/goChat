@@ -31,12 +31,12 @@
       <!-- POP UP NAV_MENU-->
       <dialog class="nav-Modal" id="nav-Modal">
         <div class="list">
-          <div class="color">調整背景顏色</div>
-          <div class="notify">開啟/關閉通知</div>
-          <a href="about_us.html" class="info">
-            <div>about us</div>
-          </a>
-          <div class="out">登出</div>
+          <button type="button" class="button">
+            <a href="/chat/index">Home</a>
+          </button>
+          <button type="button" class="button">
+            <a href="/chat/enter">Join</a>
+          </button>
         </div>
         <button class="button close-btn">關閉</button>
       </dialog>
@@ -46,13 +46,30 @@
       <div class="history">
         {{block "MSG" .}}
         <div class="MSG_GROUP" id="MSG_GROUP">
-          <img src="/assets/img/user.svg" alt="" />
+          <img src="/assets/img/user.svg" alt="" class="usr-img" />
           <p class="MSG">Some message</p>
           <div></div>
         </div>
 
         {{end}}
       </div>
+      <!-- user info-->
+      <dialog class="usr-Modal" id="usr-Modal">
+        <div class="info">
+          <div class="header">
+            <div class="profile-pic">
+              <img src="/assets/img/user.svg" />
+            </div>
+            <div class="user-id">User ID</div>
+          </div>
+          <div class="input-area">
+            <div class="input" contenteditable="true"></div>
+            <button class="button">搜尋</button>
+          </div>
+        </div>
+        <button class="button close-btn1">關閉</button>
+      </dialog>
+
     </main>
 
     <footer class="bottom-container">
@@ -61,7 +78,11 @@
       {{block "form" .}}
       <form hx-target="#MSG_GROUP" hx-post="/pub" class="set">
         <div class="enter">
-          <input type="text" name="msg" placeholder="Input your message here..." />
+          <input
+            type="text"
+            name="msg"
+            placeholder="Input your message here..."
+          />
         </div>
         <button class="button">Send</button>
       </form>

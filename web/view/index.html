@@ -1,31 +1,35 @@
+{{block "index" .}}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>首頁</title>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <!-- 禹安增/修 -->
+    <link rel="stylesheet" href="/assets/css/bg.css">
     <style>
-        body{
-            background-color: gray;
-        }
-        .and1{
+        .and1 {
             font-size: 60px;
         }
+
         .fc {
             display: flex;
             justify-content: center;
             align-items: center;
             flex-direction: column;
             height: 100vh;
-            color: white;
+            color: #aaa;
         }
-        .btn_create, .btn_enter {
+
+        .btn_create,
+        .btn_enter {
             text-decoration: none;
             border: 1px solid white;
             border-radius: 4px;
-            cursor:pointer;
+            cursor: pointer;
             text-align: center;
             width: 50%;
             height: 200px;
@@ -37,41 +41,52 @@
         }
     </style>
     <script>
-        $(document).ready(function(){
-            $('.btn_enter').css('color' : 'white');
-            $('.btn_create').mouseover(function(){
+        $(document).ready(function () {
+            $('.btn_enter').css({ 'color': 'white' });
+            $('.btn_create').mouseover(function () {
                 $(this).css({
-                    'background-color': 'white',
-                    'color': 'gray'
+                    'background-color': 'rgba(0,1,0,0.1)',
+                    'color': 'white',
                 });
             });
-            $('.btn_create').mouseout(function(){
+            $('.btn_create').mouseout(function () {
                 $(this).css({
-                    'background-color': 'gray',
-                    'color': 'white'
+                    'background-color': 'rgba(0,1,0,0)',
+                    'color': '#aaa'
                 });
             });
-            $('.btn_enter').mouseover(function(){
+            $('.btn_enter').mouseover(function () {
                 $(this).css({
-                    'background-color': 'white',
-                    'color': 'gray'
+                    'background-color': 'rgba(0,1,0,0.1)',
+                    'color': 'white',
                 });
             });
-            $('.btn_enter').mouseout(function(){
+            $('.btn_enter').mouseout(function () {
                 $(this).css({
-                    'background-color': 'gray',
-                    'color': 'white'
+                    'background-color': 'rgba(0,1,0,0)',
+                    'color': '#aaa'
                 });
             });
         });
     </script>
 
 </head>
+
 <body>
- <div class="fc">
-    <div class="btn_create">創建</div>
-    <div class="and1">&</div>
-    <a href="enter.html" class="btn_enter"><div>加入</div></a>
- </div>
+    <div class="fc">
+        <div class="btn_create">創建</div>
+        <div class="and1">&</div>
+        <a href="/chat/enter" class="btn_enter">
+            <div>加入</div>
+        </a>
+    </div>
+
+    <!-- 禹安增/修 -->
+    <div id="circle_z2"></div>
+    <div id="circle_z1"></div>
+    <div id="circle_z0"></div>
 </body>
+
 </html>
+
+{{ end }}

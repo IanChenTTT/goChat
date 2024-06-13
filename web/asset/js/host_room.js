@@ -57,4 +57,13 @@ $(function () {
   closeModal.addEventListener("click", () => {
     modal.close();
   });
+
+  const modal1 = document.querySelector("#usr-Modal");
+  $('.usr-img').on("click", function(){
+      modal1.showModal();
+  })
+  $('.close-btn1').on("click", function() {
+    modal1.close();
+  });
+
 });

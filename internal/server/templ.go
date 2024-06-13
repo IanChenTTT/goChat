@@ -12,6 +12,8 @@ import (
 )
 
 const HOST_ROOM = "host_room"
+const INDEX = "index"
+const ENTER = "enter"
 
 type Templates struct {
 	templates *template.Template
@@ -34,7 +36,7 @@ func newTemplate() *Templates {
 func (t *Templates) ServeMuxHandle(w io.Writer, name string, data interface{}) error {
 	baseName := strings.TrimSuffix(name, filepath.Ext(name))
 	switch baseName {
-	case HOST_ROOM:
+	case HOST_ROOM, ENTER, INDEX:
 		t.Render(w, baseName, nil)
 	default:
 		return errors.New("Not found")

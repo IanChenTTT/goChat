@@ -1,0 +1,76 @@
+body {
+    background-color: #1e3f40;
+    overflow: hidden;
+}
+
+#circle_z0 {
+    z-index: 0;
+    position: absolute;
+    top: 0vh;
+    left: 15vw;
+    width: 150vw;
+    height: 280vh;
+    background: rgba(255, 250, 205, 0.1);
+    border-radius: 100%;
+    box-shadow: -400px -300px 250px rgba(255, 250, 205, 0.1);
+    animation: ani_z0 8s ease-in-out 0s infinite alternate-reverse;
+    pointer-events: none;
+}
+
+@keyframes ani_z0 {
+    form {
+        box-shadow: -400px -300px 50px rgba(255, 250, 205, 0.1);
+    }
+
+    to {
+        box-shadow: -400px -300px 250px rgba(255, 250, 205, 0.1);
+    }
+}
+
+#circle_z1 {
+    z-index: 0;
+    position: absolute;
+    top: 60vh;
+    right: 40vw;
+    width: 70vw;
+    height: 120vh;
+    background: rgba(255, 250, 205, 0.3);
+    border-radius: 100%;
+    box-shadow: 80px -200px 100px rgba(255, 250, 205, 0.3);
+    animation: ani_z1 6s ease-in-out 0s infinite alternate-reverse;
+    pointer-events: none;
+}
+
+@keyframes ani_z1 {
+    form {
+        box-shadow: 100px -200px 100px rgba(255, 250, 205, 0.3);
+    }
+
+    to {
+        box-shadow: 50px -100px 10px rgba(255, 250, 205, 0.3);
+    }
+}
+
+#circle_z2 {
+    z-index: 0;
+    position: absolute;
+    top: -20vh;
+    right: -60vw;
+    width: 60vw;
+    height: 150vh;
+    background: rgba(255, 250, 205, 0.7);
+    border-radius: 100%;
+    box-shadow: -500px 0px 380px rgba(255, 250, 205, 0.7);
+    animation: ani_z2 4s ease-in-out 0s infinite alternate-reverse;
+    pointer-events: none;
+}
+
+@keyframes ani_z2 {
+    form {
+        box-shadow: -550px 0px 280px rgba(255, 250, 205, 0.7);
+    }
+
+    to {
+        box-shadow: -450px 0px 380px rgba(255, 250, 205, 0.7);
+    }
+}
