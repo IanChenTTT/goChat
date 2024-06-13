@@ -1,65 +1,72 @@
+{{block "host_room" .}}
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <!--HTMX-->
-    <script src="https://unpkg.com/htmx.org@1.9.12" integrity="sha384-ujb1lZYygJmzgSwoxRggbCHcjc0rB2XoQrxeTUQyRjrOnlCoYta87iKBWq3EsdM2" crossorigin="anonymous"></script>
+    <script
+      src="https://unpkg.com/htmx.org@1.9.12"
+      integrity="sha384-ujb1lZYygJmzgSwoxRggbCHcjc0rB2XoQrxeTUQyRjrOnlCoYta87iKBWq3EsdM2"
+      crossorigin="anonymous"
+    ></script>
+
     <!--JQUERY-->
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
-    <script src="../asset/js/host_room.js"></script>
-    <link rel="stylesheet" href="../asset/css/color.css">
-    <link rel="stylesheet" href="../asset/css/navBar.css">
-    <link rel="stylesheet" href="../asset/css/host_room.css">
-</head>
+    <script src="/assets/js/host_room.js"></script>
+    <link rel="stylesheet" href="/assets/css/color.css" />
+    <link rel="stylesheet" href="/assets/css/navBar.css" />
+    <link rel="stylesheet" href="/assets/css/host_room.css" />
+  </head>
 
-<body>
+  <body>
     <header>
-        <nav class="floating-menu">
-            <button class="open-btn">
-                <img src="../asset/img/setting.svg" alt="" srcset="">
-            </button>
-        </nav>
-        <!-- POP UP NAV_MENU-->
-        <dialog class="nav-Modal" id="nav-Modal">
-            <div class="list">
-                <div class="color">
-                    調整背景顏色
-                </div>
-                <div class="notify">
-                    開啟/關閉通知
-                </div>
-                <a href="about_us.html" class="info">
-                    <div>about us</div>
-                </a>
-                <div class="out">
-                    登出
-                </div>
-            </div>
-            <button class="button close-btn">關閉</button>
-        </dialog>
+      <nav class="floating-menu">
+        <button class="open-btn">
+          <img src="/assets/img/setting.svg" alt="" srcset="" />
+        </button>
+      </nav>
+      <!-- POP UP NAV_MENU-->
+      <dialog class="nav-Modal" id="nav-Modal">
+        <div class="list">
+          <div class="color">調整背景顏色</div>
+          <div class="notify">開啟/關閉通知</div>
+          <a href="about_us.html" class="info">
+            <div>about us</div>
+          </a>
+          <div class="out">登出</div>
+        </div>
+        <button class="button close-btn">關閉</button>
+      </dialog>
     </header>
 
     <main>
-        <div class="history">
-            <div class="MSG_GROUP">
-                <img src="../asset/img/user.svg" alt="">
-                <p class="MSG">Some message</p>
-                <div></div>
-            </div>
+      <div class="history">
+        {{block "MSG" .}}
+        <div class="MSG_GROUP" id="MSG_GROUP">
+          <img src="/assets/img/user.svg" alt="" />
+          <p class="MSG">Some message</p>
+          <div></div>
         </div>
+
+        {{end}}
+      </div>
     </main>
 
     <footer class="bottom-container">
-        <a href="host_room_set.html"><button class="set">room set</button></a>
+      <a href="host_room_set.html"><button class="button">room set</button></a>
+
+      {{block "form" .}}
+      <form hx-target="#MSG_GROUP" hx-post="/pub" class="set">
         <div class="enter">
-            <input type="text" placeholder="Input your message here...">
+          <input type="text" name="msg" placeholder="Input your message here..." />
         </div>
         <button class="button">Send</button>
+      </form>
+      {{ end }}
     </footer>
-</body>
-
+  </body>
 </html>
+{{ end }}

@@ -53,15 +53,15 @@ body {
   }
 }
 /*msgEnd*/
-
-/*input*/
-.set {
-  width: 50px;
-  height: 50px;
-  background-color: #007bff;
+.bottom-container a{
+  flex: 1; /*parent*/
   color: white;
   border: none;
-  border-radius: 50%;
+}
+/*input*/
+.set {
+  flex: 4; /*parent*/
+
   display: flex;
   align-items: center;
   justify-content: center;

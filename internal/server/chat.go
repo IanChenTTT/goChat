@@ -3,10 +3,10 @@ package server
 import (
 	"context"
 	"errors"
-	"io"
 	"log"
 	"net"
 	"net/http"
+	"path"
 	"sync"
 	"time"
 
@@ -52,10 +52,14 @@ func newChatServer() *chatServer {
 	return cs
 }
 func (cs *chatServer) route() {
-	fsys := dotFileHidingFileSystem{http.Dir("./web")}
-	cs.serverMux.Handle("/chat/", http.StripPrefix("/chat/", http.FileServer(fsys)))
-	cs.serverMux.HandleFunc("/sub", cs.subsHandler)
-	cs.serverMux.HandleFunc("/pub", cs.publishHandler)
+	fsys := dotFileHidingFileSystem{http.Dir("./web/asset")}
+	cs.serverMux.Handle("/assets/", http.StripPrefix("/assets/", http.FileServer(fsys)))
+	cs.serverMux.HandleFunc("/chat/", cs.templateHandler)
+
+	cs.serverMux.HandleFunc("/sub", cs.subsHandler) // web sokcet connection
+	cs.serverMux.HandleFunc("POST /pub", cs.publishHandler)
+
+	cs.serverMux.HandleFunc("/", cs.defaultHandler)
 }
 
 // Serve each end point
@@ -64,14 +68,25 @@ func (cs *chatServer) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	cs.serverMux.ServeHTTP(w, r)
 }
 
-// TODO !! Serve File handler
-// subscribeHandler accepts the WebSocket connection and then subscribes
-// it to all future messages.
-//func (cs *chatServer) fileHandler(w http.ResponseWriter, r *http.Request) {
-//	cs.logf("incomming URL", r.URL.Path)
-//	fmt.Fprintf(w, "Hello, %q", html.EscapeString(r.URL.Path))
-//http.wServeFile(w, r)
-//}
+// defaulHandler behave as last handler, return 404
+func (cs *chatServer) defaultHandler(w http.ResponseWriter, r *http.Request) {
+	http.NotFound(w, r)
+	return
+}
+
+// templateHandler accepts from host/chat/{{block name}}
+// if template name was not in const variable templ.go
+// return 404 page will show
+func (cs *chatServer) templateHandler(w http.ResponseWriter, r *http.Request) {
+	templates := newTemplate()
+	file := path.Base(r.URL.Path)
+	err := templates.ServeMuxHandle(w, file, nil)
+	if err != nil {
+		cs.logf(err.Error())
+		http.NotFound(w, r)
+		return
+	}
+}
 
 // subscribeHandler accepts the WebSocket connection and then subscribes
 // it to all future messages.
@@ -169,18 +184,16 @@ func (cs *chatServer) subscribe(ctx context.Context, w http.ResponseWriter, r *h
 // with limit of 8192 bytes and then publushes
 // the recieved message.
 func (cs *chatServer) publishHandler(w http.ResponseWriter, r *http.Request) {
-	if r.Method != "POST" {
-		http.Error(w, http.StatusText(http.StatusMethodNotAllowed), http.StatusMethodNotAllowed)
-		return
-	}
-	body := http.MaxBytesReader(w, r.Body, 8192)
-	msg, err := io.ReadAll(body)
+	err := r.ParseForm()
 	if err != nil {
 		http.Error(w, http.StatusText(http.StatusRequestEntityTooLarge), http.StatusRequestEntityTooLarge)
 		return
 	}
-
-	cs.publish(msg)
+	msg := r.PostFormValue("msg")
+	cs.logf("it is written as %s", msg)
+	msgByte := []byte(msg)
+	cs.logf("it is written as %x", msgByte)
+	cs.publish(msgByte)
 }
 func (cs *chatServer) publish(msg []byte) {
 	cs.subsMut.Lock()
